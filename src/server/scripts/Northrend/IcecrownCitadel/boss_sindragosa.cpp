@@ -302,7 +302,7 @@ class boss_sindragosa : public CreatureScript
                 {
                     Talk(SAY_PHASE_2);
                     events.CancelEvent(EVENT_AIR_PHASE);
-                    events.ScheduleEvent(EVENT_ICE_TOMB, urand(7000, 10000));
+                    events.ScheduleEvent(EVENT_ICE_TOMB, urand(20000, 25000));
                     events.RescheduleEvent(EVENT_ICY_GRIP, urand(35000, 40000));
                     DoCast(me, SPELL_MYSTIC_BUFFET, true);
                     _isThirdPhase = true;
@@ -403,7 +403,7 @@ class boss_sindragosa : public CreatureScript
                         case EVENT_ICY_GRIP:
                             DoCast(me, SPELL_ICY_GRIP);
                             events.ScheduleEvent(EVENT_ICY_GRIP, urand(70000, 75000), EVENT_GROUP_LAND_PHASE);
-                            events.ScheduleEvent(EVENT_BLISTERING_COLD, 1000, EVENT_GROUP_LAND_PHASE);
+                            events.ScheduleEvent(EVENT_BLISTERING_COLD, 5000, EVENT_GROUP_LAND_PHASE);
                             break;
                         case EVENT_BLISTERING_COLD:
                             Talk(EMOTE_WARN_BLISTERING_COLD);

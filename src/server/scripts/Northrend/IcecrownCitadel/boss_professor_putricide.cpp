@@ -526,7 +526,7 @@ class boss_professor_putricide : public CreatureScript
                         case EVENT_FESTERGUT_GOO:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                                 DoCast(target, SPELL_MALLABLE_GOO_H, true); // triggered, to skip LoS check
-                            events.ScheduleEvent(EVENT_FESTERGUT_GOO, urand(15000, 20000), 0, PHASE_FESTERGUT);
+                            events.ScheduleEvent(EVENT_FESTERGUT_GOO, urand(45000, 60000), 0, PHASE_FESTERGUT);
                             break;
                         case EVENT_ROTFACE_DIES:
                             Talk(SAY_ROTFACE_DEATH);
@@ -535,7 +535,7 @@ class boss_professor_putricide : public CreatureScript
                         case EVENT_ROTFACE_VILE_GAS:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                                 DoCast(target, SPELL_VILE_GAS_H, true); // triggered, to skip LoS check
-                            events.ScheduleEvent(EVENT_ROTFACE_VILE_GAS, urand(15000, 20000), 0, PHASE_ROTFACE);
+                            events.ScheduleEvent(EVENT_ROTFACE_VILE_GAS, urand(55000, 620000), 0, PHASE_ROTFACE);
                             break;
                         case EVENT_ROTFACE_OOZE_FLOOD:
                             DoAction(ACTION_ROTFACE_OOZE);

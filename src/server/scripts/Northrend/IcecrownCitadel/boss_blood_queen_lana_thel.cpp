@@ -613,6 +613,17 @@ class spell_blood_queen_bloodbolt : public SpellScriptLoader
                     return false;
                 return true;
             }
+            void RecalculateDamage(SpellEffIndex effIndex)
+            {
+                int32 dmg = GetHitDamage();
+                float distance = GetHitUnit()->GetExactDist2d(GetCaster());
+                if (distance < 5.0f)
+                    return;
+
+                float distVar = distance >= 20.0f ? 4 : (10.0f/3.0f);
+                dmg /= distance / distVar;
+                SetHitDamage(dmg);
+			}   
 
             void HandleDummy()
             {

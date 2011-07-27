@@ -169,7 +169,7 @@ class boss_lord_marrowgar : public CreatureScript
                                 me->CastCustomSpell(SPELL_COLDFLAME_NORMAL, SPELLVALUE_MAX_TARGETS, 1, me);
                             else
                                 DoCast(me, SPELL_COLDFLAME_BONE_STORM);
-                            events.ScheduleEvent(EVENT_COLDFLAME, 5000, EVENT_GROUP_SPECIAL);
+                            events.ScheduleEvent(EVENT_COLDFLAME, 15000, EVENT_GROUP_SPECIAL);
                             break;
                         case EVENT_WARN_BONE_STORM:
                             _boneSlice = false;

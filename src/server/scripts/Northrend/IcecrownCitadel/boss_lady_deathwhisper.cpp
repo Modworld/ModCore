@@ -437,7 +437,7 @@ class boss_lady_deathwhisper : public CreatureScript
                         case EVENT_DEATH_AND_DECAY:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM))
                                 DoCast(target, SPELL_DEATH_AND_DECAY);
-                            events.ScheduleEvent(EVENT_DEATH_AND_DECAY, urand(10000, 12000));
+                            events.ScheduleEvent(EVENT_DEATH_AND_DECAY, urand(13000, 15000));
                             break;
                         case EVENT_DOMINATE_MIND_H:
                             Talk(SAY_DOMINATE_MIND);
@@ -453,7 +453,7 @@ class boss_lady_deathwhisper : public CreatureScript
                         case EVENT_P1_SHADOW_BOLT:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM))
                                 DoCast(target, SPELL_SHADOW_BOLT);
-                            events.ScheduleEvent(EVENT_P1_SHADOW_BOLT, urand(5000, 8000), 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_P1_SHADOW_BOLT, urand(12000, 15000), 0, PHASE_ONE);
                             break;
                         case EVENT_P1_REANIMATE_CULTIST:
                             ReanimateCultist();
@@ -464,11 +464,11 @@ class boss_lady_deathwhisper : public CreatureScript
                             break;
                         case EVENT_P2_FROSTBOLT:
                             DoCastVictim(SPELL_FROSTBOLT);
-                            events.ScheduleEvent(EVENT_P2_FROSTBOLT, urand(10000, 11000), 0, PHASE_TWO);
+                            events.ScheduleEvent(EVENT_P2_FROSTBOLT, urand(13000, 15000), 0, PHASE_TWO);
                             break;
                         case EVENT_P2_FROSTBOLT_VOLLEY:
                             DoCastAOE(SPELL_FROSTBOLT_VOLLEY);
-                            events.ScheduleEvent(EVENT_P2_FROSTBOLT_VOLLEY, urand(13000, 15000), 0, PHASE_TWO);
+                            events.ScheduleEvent(EVENT_P2_FROSTBOLT_VOLLEY, urand(23000, 25000), 0, PHASE_TWO);
                             break;
                         case EVENT_P2_TOUCH_OF_INSIGNIFICANCE:
                             DoCastVictim(SPELL_TOUCH_OF_INSIGNIFICANCE);
