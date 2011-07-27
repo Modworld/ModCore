@@ -27,9 +27,9 @@
 #define _PACKAGENAME "ModCore "
 
 #if TRINITY_ENDIAN == TRINITY_BIGENDIAN
-# define _ENDIAN_STRING "big-endian"
+# define _ENDIAN_STRING "Thanks Tc-Fc-Cc"
 #else
-# define _ENDIAN_STRING "little-endian"
+# define _ENDIAN_STRING "Thanks Tc-Fc-Cc"
 #endif
 
 #if PLATFORM == PLATFORM_WINDOWS
