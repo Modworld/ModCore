@@ -10,6 +10,8 @@
 
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
+   Custom/professionnpc.cpp
+   
 )
 
 message("  -> Prepared: Custom")

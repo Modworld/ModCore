@@ -42,6 +42,11 @@ void AddSC_example_spell_scripts();
 
 void AddSC_SmartSCripts();
 
+//Custom
+void AddSC_professionnpc();
+void AddSC_DuelReset();
+
+
 //Commands
 void AddSC_account_commandscript();
 void AddSC_achievement_commandscript();
@@ -1231,6 +1236,8 @@ void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-
+	
+	AddSC_professionnpc(); // Profession Npc
+	AddSC_DuelReset();
 #endif
 }
