@@ -1024,15 +1024,12 @@ bool Guardian::UpdateStats(Stats stat)
         if (aurEff)
             mod += CalculatePctN(1.0f, aurEff->GetAmount());                                                    // Glyph of the Ghoul adds a flat value to the scale mod
         ownersBonus = float(owner->GetStat(stat)) * mod;
-        value += ownersBonus;
     }
     else if (stat == STAT_STAMINA)
     {
         if (owner->getClass() == CLASS_WARLOCK && isPet())
-        {
             ownersBonus = CalculatePctN(owner->GetStat(STAT_STAMINA), 75);
-            value += ownersBonus;
-        }
+
         else
         {
             mod = 0.45f;
@@ -1052,7 +1049,7 @@ bool Guardian::UpdateStats(Stats stat)
             value += ownersBonus;
         }
     }
-                                                            //warlock's and mage's pets gain 30% of owner's intellect
+	//warlock's and mage's pets gain 30% of owner's intellect
     else if (stat == STAT_INTELLECT)
     {
         if (owner->getClass() == CLASS_WARLOCK || owner->getClass() == CLASS_MAGE)
@@ -1061,15 +1058,22 @@ bool Guardian::UpdateStats(Stats stat)
             value += ownersBonus;
         }
     }
-/*
+
     else if (stat == STAT_STRENGTH)
     {
         if (IsPetGhoul())
             value += float(owner->GetStat(stat)) * 0.3f;
     }
-*/
 
-    SetStat(stat, int32(value));
+  UnitMods unitMod = UnitMods(UNIT_MOD_STAT_START + stat);
+  ApplyStatBuffMod(stat, m_statFromOwner[stat], false);
+   m_auraModifiersGroup[unitMod][TOTAL_VALUE] -= m_statFromOwner[stat];
+   m_statFromOwner[stat] = ownersBonus;
+   
+    ApplyStatBuffMod(stat, m_statFromOwner[stat], true);
+	m_auraModifiersGroup[unitMod][TOTAL_VALUE] += m_statFromOwner[stat];
+    
+	SetStat(stat, int32(value));
     m_statFromOwner[stat] = ownersBonus;
     ApplyStatBuffMod(stat, m_statFromOwner[stat], true);
 
