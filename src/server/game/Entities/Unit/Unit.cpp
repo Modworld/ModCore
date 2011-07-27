@@ -1934,9 +1934,48 @@ void Unit::CalcHealAbsorb(Unit* victim, const SpellEntry *healSpell, uint32 &hea
     healAmount = RemainingHeal;
 }
 
+bool Unit::CanMoveWhileCasting()
+{
+    bool canMove = true;
+    if (HasUnitState(UNIT_STAT_CASTING))
+    {
+        //Allow to auto-attack while channeling spell that can't be interrupted by moving
+        canMove = false;
+        if (Spell* spell = GetCurrentSpell(CURRENT_CHANNELED_SPELL))
+        {
+            if (spell->getState() == SPELL_STATE_CASTING)
+            {
+                uint32 channelInterruptFlags = spell->m_spellInfo->ChannelInterruptFlags;
+                if (!(channelInterruptFlags & SPELL_INTERRUPT_FLAG_MOVEMENT))
+                    canMove = true;
+            }
+        }
+    }
+    return canMove;
+}
+
+bool Unit::CanAttackWhileCasting()
+{
+    bool canAutoAttack = true;
+    if (HasUnitState(UNIT_STAT_CASTING))
+    {
+        //Allow to auto-attack while channeling spell that can't be interrupted by auto-attack
+        canAutoAttack = false;
+        if (Spell* spell = GetCurrentSpell(CURRENT_CHANNELED_SPELL))
+        {
+            if (spell->getState() == SPELL_STATE_CASTING)
+            {
+                uint32 channelInterruptFlags = spell->m_spellInfo->ChannelInterruptFlags;
+                if (channelInterruptFlags & SPELL_INTERRUPT_FLAG_AUTOATTACK)
+                    canAutoAttack = true;
+            }
+        }
+    }
+    return canAutoAttack;
+}
 void Unit::AttackerStateUpdate (Unit* victim, WeaponAttackType attType, bool extra)
 {
-    if (HasUnitState(UNIT_STAT_CANNOT_AUTOATTACK) || HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PACIFIED))
+   if (HasUnitState(UNIT_STAT_LOST_CONTROL) || HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PACIFIED) || !CanAttackWhileCasting())
         return;
 
     if (!victim->isAlive())
